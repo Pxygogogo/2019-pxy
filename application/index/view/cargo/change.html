@@ -1,0 +1,116 @@
+{extend name="base" /}
+{block name="cargo"}
+<li class="nav-item active">
+    <a href="{:url('index/cargo/index')}">
+        <i class="la la-th"></i>
+        <p>货物管理</p>
+    </a>
+</li>
+{/block}
+
+{block name="content"}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">货物管理</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <!--                <h6 class="page-title">新增用户</h6>-->
+                <div class="card">
+                    <form class="form-horizontal" id="form" action="updateData" method="post">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="padding: 20px">
+                                <h6 class="panel-title">货物详情</h6>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group" style="padding-left: 26px">
+                                    <input type="hidden" name="cargo_id" value="{$cargo['cargo_id']}">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">货物名字</label>
+                                            <input type="text" name="name" class="form-control" placeholder=""
+                                                   value="{$cargo['name']}">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">货物类型</label>
+                                            <input type="text" name="type" class="form-control" placeholder=""
+                                                   value="{$cargo['type']}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">打包方式</label>
+                                            <input type="text" name="package_way" class="form-control" placeholder=""
+                                                   value="{$cargo['package_way']}">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">计量单位</label>
+                                            <input type="text" name="measure_unit" class="form-control" placeholder=""
+                                                   value="{$cargo['measure_unit']}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">单位长度（米）</label>
+                                            <input type="text" name="unit_length" class="form-control" placeholder=""
+                                                   value="{$cargo['unit_length']}">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">单位宽度（米）</label>
+                                            <input type="text" name="unit_width" class="form-control" placeholder=""
+                                                   value="{$cargo['unit_width']}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">单位高度（米）</label>
+                                            <input type="text" name="unit_height" class="form-control" placeholder=""
+                                                   value="{$cargo['unit_height']}">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">单位重量（千克）</label>
+                                            <input type="text" name="unit_weight" class="form-control" placeholder=""
+                                                   value="{$cargo['unit_weight']}">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">保鲜温度（单位：摄氏度）</label>
+                                            <input type="text" name="temperature" class="form-control" placeholder=""
+                                                   value="{$cargo['temperature']}">
+                                        </div>
+                                        <!--                                        <div class="col-sm-3">-->
+                                        <!--                                            <label for="" class="col-sm-3 control-label">最高保鲜温度</label>-->
+                                        <!--                                            <input type="text" name="temperature" class="form-control" placeholder="" value=>-->
+                                        <!--                                        </div>-->
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">保质期（单位：天）</label>
+                                            <input type="text" name="expiration_date" class="form-control"
+                                                   placeholder="" value="{$cargo['expiration_date']}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 25px">
+                            <button class="btn btn-primary" type="submit">确认修改</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function del(client_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?client_id=' + client_id;
+        } else {
+
+        }
+    }
+
+    function change(client_id) {
+        location.href = "{:url('change')}" + '?client_id=' + client_id;
+    }
+</script>
+{/block}

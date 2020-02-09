@@ -1,0 +1,70 @@
+{extend name="base" /}
+{block name="contact"}
+<li class="nav-item active">
+    <a href="{:url('index/contact/index')}">
+        <i class="la la-user-plus"></i>
+        <p>联系人管理</p>
+    </a>
+</li>
+{/block}
+
+{block name="content"}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">联系人管理</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <h6 class="page-title">搜索结果</h6>
+                <div class="card">
+                    <table class="table table-striped" style="text-align: center">
+                        <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>姓名</th>
+                            <th>称谓</th>
+                            <th>手机</th>
+                            <th>电话</th>
+                            <th>传真</th>
+                            <th>邮箱</th>
+                            <th>客户</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach name='contact' key='key' item='vo'}
+                        <tr>
+                            <td>{$vo['contact_id']}</td>
+                            <td>{$vo['name']}</td>
+                            <td>{$vo['salutation']}</td>
+                            <td>{$vo['mobile_phone']}</td>
+                            <td>{$vo['telephone']}</td>
+                            <td>{$vo['fax']}</td>
+                            <td>{$vo['email']}</td>
+                            <td>{$vo['client_name']}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="del({$vo['contact_id']})">删除</button>
+                                <button class="btn btn-primary btn-sm" onclick="change({$vo['contact_id']})">详情</button>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function del(contact_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?contact_id=' + contact_id;
+        } else {
+
+        }
+    }
+
+    function change(contact_id) {
+        location.href = "{:url('change')}" + '?contact_id=' + contact_id;
+    }
+</script>
+{/block}

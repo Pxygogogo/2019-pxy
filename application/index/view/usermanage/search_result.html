@@ -1,0 +1,59 @@
+{extend name="base" /}
+{block name="user"}
+<li class="nav-item active">
+    <a href="{:url('index/usermanage/index')}">
+        <i class="la la-table"></i>
+        <p>用户管理</p>
+    </a>
+</li>
+{/block}
+{block name="content"}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">用户管理</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <h6 class="page-title">查询结果</h6>
+                <div class="card">
+                    <table class="table table-striped" style="text-align: center">
+                        <thead>
+                        <tr>
+                            <th>用户编号</th>
+                            <th>名称</th>
+                            <th>角色</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach name='field' key='key' item='vo'}
+                        <tr>
+                            <td>{$vo['admin_id']}</td>
+                            <td>{$vo['username']}</td>
+                            <td>{$vo['role']}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="del({$vo['admin_id']})">删除</button>
+                                <button class="btn btn-primary btn-sm" onclick="change({$vo['admin_id']})">详情</button>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function del(admin_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?admin_id=' + admin_id;
+        } else {
+
+        }
+    }
+
+    function change(admin_id) {
+        location.href = "{:url('change')}" + '?admin_id=' + admin_id;
+    }
+</script>
+{/block}

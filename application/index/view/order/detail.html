@@ -1,0 +1,138 @@
+{extend name="base" /}
+{block name="order"}
+<li class="nav-item active">
+    <a href="{:url('index/order/index')}">
+        <i class="la la-bell"></i>
+        <p>订单管理</p>
+    </a>
+</li>
+{/block}
+
+{block name="content"}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">订单详情（已提交）</h4>
+        <div class="form-group" style="padding-left: 26px">
+            <div class="row">
+                <div class="col-lg-5">
+                    <input value="{$order['client_id']}" disabled type="hidden" id="client_id" name="client_id"
+                           value="">
+                    <label for="" class="col-sm-5 control-label">客户名称</label>
+                    <div class="input-group">
+                        <input value="{$order['client_name']}" disabled type="text" id="client_name" name="client_name"
+                               class="form-control"
+                               placeholder="请输入客户名称">
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-5">
+                    <label for="" class="col-sm-5 control-label">货物名称</label>
+                    <div class="input-group">
+                        <div class="input-group">
+                            {foreach name='$cargoArr' key='key' item='vo' }
+                            <div style="position: relative;height: 65px;margin-left: 20px;">
+                                <button type="button" class="btn btn-primary cargo_id" id="${$vo['cargo_id']}">
+                                    {$vo['cargo_name']}
+                                </button>
+                                <div style="width:100%;position:absolute;bottom: 0;text-align: center;">
+                                    {$vo['cargo_count']}{$vo['measure_unit']}
+                                </div>
+                            </div>
+                            {/foreach}
+                        </div><!-- /input-group -->
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <label for="" class="col-sm-5 control-label">发货人</label>
+                    <input value="{$order['consigner']}" disabled type="text" name="consigner" class="form-control"
+                           placeholder="">
+                </div>
+                <div class="col-sm-5">
+                    <label for="" class="col-sm-5 control-label">发货人联系电话</label>
+                    <input value="{$order['consigner_phone']}" disabled type="text" name="consigner_phone"
+                           class="form-control"
+                           placeholder="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <label for="" class="col-sm-5 control-label">发货地所在省市区</label>
+                    <div data-toggle="distpicker">
+                        <select disabled name="consigner_province"
+                                data-province="{$order['consigner_province']}"></select>
+                        <select disabled name="consigner_city" data-city="{$order['consigner_city']}"></select>
+                        <select disabled name="consigner_district"
+                                data-district="{$order['consigner_district']}"></select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <label for="" class="col-sm-5 control-label">发货详细地址</label>
+                    <input value="{$order['consigner_address']}" disabled type="text" name="consigner_address"
+                           class="form-control"
+                           placeholder="">
+                </div>
+                <div class="col-sm-5">
+                    <label for="" class="col-sm-5 control-label">发货人电子邮箱</label>
+                    <input value="{$order['consigner_email']}" disabled type="email" name="consigner_email"
+                           class="form-control"
+                           placeholder="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <label for="" class="col-sm-5 control-label">收货人</label>
+                    <input value="{$order['consignee']}" disabled type="text" name="consignee" class="form-control"
+                           placeholder="">
+                </div>
+                <div class="col-sm-5">
+                    <label for="" class="col-sm-5 control-label">收货人联系电话</label>
+                    <input value="{$order['consignee_phone']}" disabled type="text" name="consignee_phone"
+                           class="form-control"
+                           placeholder="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <label for="" class="col-sm-5 control-label">收货人所在省市区</label>
+                    <div data-toggle="distpicker">
+                        <select disabled name="consignee_province"
+                                data-province="{$order['consignee_province']}"></select>
+                        <select disabled name="consignee_city" data-city="{$order['consignee_city']}"></select>
+                        <select disabled name="consignee_district"
+                                data-district="{$order['consignee_district']}"></select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <label for="" class="col-sm-5 control-label">收货人详细地址</label>
+                    <input value="{$order['consignee_address']}" disabled type="text" name="consignee_address"
+                           class="form-control"
+                           placeholder="">
+                </div>
+                <div class="col-sm-5">
+                    <label for="" class="col-sm-5 control-label">收货人电子邮箱</label>
+                    <input value="{$order['consignee_email']}" disabled type="email" name="consignee_email"
+                           class="form-control"
+                           placeholder="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <label for="" class="col-sm-5 control-label">下单日期</label>
+                    <input value="{$order['order_date']}" disabled type="text" name="order_date"
+                           class="form-control"
+                           placeholder="">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{/block}

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="021ddc03-b0d6-412a-af7d-5b72528da1e2" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/topthink/think-installer" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1Upsdcah8xKPVasRjUsojdhY1KA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/application/index/view/contact" />
+    <property name="two.files.diff.last.used.folder" value="$PROJECT_DIR$/application/common" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\wamp64\www\2019数据库大作业\servertp5\application\index\view\contact" />
+      <recent name="D:\wamp64\www\2019数据库大作业\servertp5\application\index\view\order" />
+      <recent name="D:\wamp64\www\2019数据库大作业\servertp5\application\index\view\cargo" />
+      <recent name="D:\wamp64\www\2019数据库大作业\servertp5\application\index\view\Client" />
+      <recent name="D:\wamp64\www\2019数据库大作业\servertp5\application\index\view\usermanage" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\wamp64\www\2019数据库大作业\servertp5\application\index\view\entry" />
+    </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="021ddc03-b0d6-412a-af7d-5b72528da1e2" name="Default Changelist" comment="" />
+      <created>1576064959540</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576064959540</updated>
+      <workItem from="1576064961033" duration="6888000" />
+      <workItem from="1576490438205" duration="35945000" />
+      <workItem from="1576838034893" duration="27103000" />
+      <workItem from="1576976931390" duration="100655000" />
+      <workItem from="1577240353281" duration="11946000" />
+      <workItem from="1577274821322" duration="42427000" />
+      <workItem from="1581215853202" duration="1538000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="657" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1576577822641">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="657" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576577822641" />
+    <state x="627" y="215" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1577154290782">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="627" y="215" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577154290782" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1576493892860">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576493892860" />
+    <state x="690" y="215" key="FileChooserDialogImpl" timestamp="1577274216457">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="215" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1577274216457" />
+    <state x="600" y="273" key="NewPhpClassDialog" timestamp="1576069609529">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="600" y="273" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576069609529" />
+    <state x="551" y="179" width="817" height="682" key="find.popup" timestamp="1577105617841">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="551" y="179" width="817" height="682" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577105617841" />
+    <state x="642" y="89" key="refactoring.ChangeSignatureDialog" timestamp="1576562118722">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="642" y="89" key="refactoring.ChangeSignatureDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576562118722" />
+    <state x="532" y="237" width="840" height="1034" key="run.anything.popup" timestamp="1581215855157">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="532" y="237" width="840" height="1034" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1581215855157" />
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1577369560105">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1577369560105" />
+  </component>
+</project>

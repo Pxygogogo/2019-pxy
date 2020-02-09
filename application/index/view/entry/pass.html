@@ -1,0 +1,61 @@
+{extend name="base" /}
+{block name="index"}
+<li class="nav-item active">
+    <a href="{:url('index/entry/index')}">
+        <i class="la la-dashboard"></i>
+        <p>首页</p>
+    </a>
+</li>
+{/block}
+
+{block name="content"}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">密码管理</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <form class="form-horizontal" id="form" action="pass" method="post">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="padding: 20px">
+                                <h6 class="panel-title">修改密码</h6>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <input type="hidden" name="admin_id" value="">
+                                    <label for="" class="col-sm-2 control-label">原密码</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" name="password" class="form-control" placeholder=""
+                                               value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="admin_id" value="">
+                                    <label for="" class="col-sm-2 control-label">新密码</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" name="new_pass" class="form-control" placeholder=""
+                                               value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="admin_id" value="">
+                                    <label for="" class="col-sm-2 control-label">确认新密码</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" name="confirm_pass" class="form-control" placeholder=""
+                                               value="">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div style="padding: 25px">
+                            <button class="btn btn-primary" type="submit">修改</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}

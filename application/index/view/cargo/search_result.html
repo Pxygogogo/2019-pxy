@@ -1,0 +1,66 @@
+{extend name="base" /}
+{block name="cargo"}
+<li class="nav-item active">
+    <a href="{:url('index/cargo/index')}">
+        <i class="la la-th"></i>
+        <p>货物管理</p>
+    </a>
+</li>
+{/block}
+
+{block name="content"}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">货物管理</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <h6 class="page-title">现有货物管理</h6>
+                <div class="card">
+                    <table class="table table-striped" style="text-align: center">
+                        <thead>
+                        <tr>
+                            <th>货物编号</th>
+                            <th>货物名称</th>
+                            <th>货物类型</th>
+                            <th>计量单位</th>
+                            <th>保鲜温度（摄氏度）</th>
+                            <th>保质期（天）</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach name='cargo' key='key' item='vo'}
+                        <tr>
+                            <td>{$vo['cargo_id']}</td>
+                            <td>{$vo['name']}</td>
+                            <td>{$vo['type']}</td>
+                            <td>{$vo['measure_unit']}</td>
+                            <td>{$vo['temperature']}</td>
+                            <td>{$vo['expiration_date']}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="del({$vo['cargo_id']})">删除</button>
+                                <button class="btn btn-primary btn-sm" onclick="change({$vo['cargo_id']})">详情</button>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    function del(cargo_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?cargo_id=' + cargo_id;
+        } else {
+
+        }
+    }
+
+    function change(cargo_id) {
+        location.href = "{:url('change')}" + '?cargo_id=' + cargo_id;
+    }
+</script>
+{/block}

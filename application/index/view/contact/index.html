@@ -1,0 +1,151 @@
+{extend name="base" /}
+{block name="contact"}
+<li class="nav-item active">
+    <a href="{:url('index/contact/index')}">
+        <i class="la la-user-plus"></i>
+        <p>联系人管理</p>
+    </a>
+</li>
+{/block}
+
+{block name="content"}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">联系人管理</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <a style="text-decoration: none;" href="#searchForm" data-toggle="collapse"><h6 class="page-title">
+                    联系人搜索</h6></a>
+                <div class="collapse show" id="searchForm">
+                    <div class="card">
+                        <form class="form-horizontal" action="searchResult" method="post">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="padding: 20px">
+                                    <h6 class="panel-title">联系人搜索</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">关键词</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="keywords" class="form-control"
+                                                   placeholder="请输入联系人信息进行搜索...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 25px">
+                                <button class="btn btn-primary" type="submit">搜索</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <a style="text-decoration: none" href="#client" data-toggle="collapse"><h6 class="page-title">新增联系人</h6>
+                </a>
+                <div id="client" class="collapse">
+                    <div class="card">
+                        <form class="form-horizontal" id="form" action="addContact" method="post">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="padding: 20px">
+                                    <h6 class="panel-title">新增联系人</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group" style="padding-left: 26px">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">联系人姓名</label>
+                                                <input type="text" name="name" class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">联系人称谓</label>
+                                                <input type="text" name="salutation" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">联系人手机</label>
+                                                <input type="text" name="mobile_phone" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">联系人电话</label>
+                                                <input type="text" name="telephone" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">联系人传真</label>
+                                                <input type="text" name="fax" class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">联系人电子邮箱</label>
+                                                <input type="text" name="email" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 25px">
+                                <button class="btn btn-primary" type="submit">新增联系人</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h6 class="page-title">现有客户管理</h6>
+                <div class="card">
+                    <table class="table table-striped" style="text-align: center">
+                        <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>姓名</th>
+                            <th>称谓</th>
+                            <th>手机</th>
+                            <th>电话</th>
+                            <th>传真</th>
+                            <th>邮箱</th>
+                            <th>客户</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach name='contact' key='key' item='vo'}
+                        <tr>
+                            <td>{$vo['contact_id']}</td>
+                            <td>{$vo['name']}</td>
+                            <td>{$vo['salutation']}</td>
+                            <td>{$vo['mobile_phone']}</td>
+                            <td>{$vo['telephone']}</td>
+                            <td>{$vo['fax']}</td>
+                            <td>{$vo['email']}</td>
+                            <td>{$vo['client_name']}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="del({$vo['contact_id']})">删除</button>
+                                <button class="btn btn-primary btn-sm" onclick="change({$vo['contact_id']})">详情</button>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function del(contact_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?contact_id=' + contact_id;
+        } else {
+
+        }
+    }
+
+    function change(contact_id) {
+        location.href = "{:url('change')}" + '?contact_id=' + contact_id;
+    }
+</script>
+{/block}

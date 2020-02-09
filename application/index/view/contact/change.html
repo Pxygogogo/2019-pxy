@@ -1,0 +1,83 @@
+{extend name="base" /}
+{block name="contact"}
+<li class="nav-item active">
+    <a href="{:url('index/contact/index')}">
+        <i class="la la-user-plus"></i>
+        <p>联系人管理</p>
+    </a>
+</li>
+{/block}
+{block name="content"}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">联系人管理</h4>
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <div id="client" class="collapse show">
+                    <div class="card">
+                        <form class="form-horizontal" id="form" action="updateData" method="post">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="padding: 20px">
+                                    <h6 class="panel-title">新增联系人</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group" style="padding-left: 26px">
+                                        <input value="{$contact['contact_id']}" type="hidden" name="contact_id"
+                                               class="form-control" placeholder="">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">联系人姓名</label>
+                                                <input value="{$contact['name']}" type="text" name="name"
+                                                       class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">联系人称谓</label>
+                                                <input value="{$contact['salutation']}" type="text" name="salutation"
+                                                       class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">联系人手机</label>
+                                                <input value="{$contact['mobile_phone']}" type="text"
+                                                       name="mobile_phone" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">联系人电话</label>
+                                                <input value="{$contact['telephone']}" type="text" name="telephone"
+                                                       class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">联系人传真</label>
+                                                <input value="{$contact['fax']}" type="text" name="fax"
+                                                       class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">联系人电子邮箱</label>
+                                                <input value="{$contact['email']}" type="text" name="email"
+                                                       class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 25px">
+                                <button class="btn btn-primary" type="submit">确认修改</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>
+{/block}

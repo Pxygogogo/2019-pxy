@@ -1,0 +1,177 @@
+{extend name="base" /}
+{block name="cargo"}
+<li class="nav-item active">
+    <a href="{:url('index/cargo/index')}">
+        <i class="la la-th"></i>
+        <p>货物管理</p>
+    </a>
+</li>
+{/block}
+
+{block name="content"}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">货物管理</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <a style="text-decoration: none;" href="#searchForm" data-toggle="collapse"><h6 class="page-title">
+                    货物搜索</h6></a>
+                <div class="collapse show" id="searchForm">
+                    <div class="card">
+                        <form class="form-horizontal" action="searchResult" method="post">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="padding: 20px">
+                                    <h6 class="panel-title">货物搜索</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">关键词</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="keywords" class="form-control"
+                                                   placeholder="请输入任意货物信息进行搜索...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 25px">
+                                <button class="btn btn-primary" type="submit">搜索</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <a style="text-decoration: none" href="#cargo" data-toggle="collapse"><h6 class="page-title">新增货物</h6>
+                </a>
+                <div id="cargo" class="collapse">
+                    <div class="card">
+                        <form class="form-horizontal" id="form" action="addCargo" method="post">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="padding: 20px">
+                                    <h6 class="panel-title">新增货物</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group" style="padding-left: 26px">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">货物名字</label>
+                                                <input type="text" name="name" class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">货物类型</label>
+                                                <input type="text" name="type" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">打包方式</label>
+                                                <input type="text" name="package_way" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">计量单位</label>
+                                                <input type="text" name="measure_unit" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">单位长度（米）</label>
+                                                <input type="text" name="unit_length" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">单位宽度（米）</label>
+                                                <input type="text" name="unit_width" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">单位高度（米）</label>
+                                                <input type="text" name="unit_height" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">单位重量（千克）</label>
+                                                <input type="text" name="unit_weight" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">保鲜温度（单位：摄氏度）</label>
+                                                <input type="text" name="temperature" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                            <!--                                        <div class="col-sm-3">-->
+                                            <!--                                            <label for="" class="col-sm-3 control-label">最高保鲜温度</label>-->
+                                            <!--                                            <input type="text" name="temperature" class="form-control" placeholder="">-->
+                                            <!--                                        </div>-->
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">保质期（单位：天）</label>
+                                                <input type="text" name="expiration_date" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 25px">
+                                <button class="btn btn-primary" type="submit">确定新增</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h6 class="page-title">现有货物管理</h6>
+                <div class="card">
+                    <table class="table table-striped" style="text-align: center">
+                        <thead>
+                        <tr>
+                            <th>货物编号</th>
+                            <th>货物名称</th>
+                            <th>货物类型</th>
+                            <th>计量单位</th>
+                            <th>保鲜温度（摄氏度）</th>
+                            <th>保质期（天）</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach name='cargo' key='key' item='vo'}
+                        <tr>
+                            <td>{$vo['cargo_id']}</td>
+                            <td>{$vo['name']}</td>
+                            <td>{$vo['type']}</td>
+                            <td>{$vo['measure_unit']}</td>
+                            <td>{$vo['temperature']}</td>
+                            <td>{$vo['expiration_date']}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="del({$vo['cargo_id']})">删除</button>
+                                <button class="btn btn-primary btn-sm" onclick="change({$vo['cargo_id']})">详情</button>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    function del(cargo_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?cargo_id=' + cargo_id;
+        } else {
+
+        }
+    }
+
+    function change(cargo_id) {
+        location.href = "{:url('change')}" + '?cargo_id=' + cargo_id;
+    }
+</script>
+{/block}

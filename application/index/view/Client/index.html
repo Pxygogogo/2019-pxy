@@ -1,0 +1,314 @@
+{extend name="base" /}
+{block name="client"}
+<li class="nav-item active">
+    <a href="{:url('index/client/index')}">
+        <i class="la la-user-plus"></i>
+        <p>客户管理</p>
+    </a>
+</li>
+{/block}
+
+{block name="content"}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">客户管理</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <a style="text-decoration: none;" href="#searchForm" data-toggle="collapse"><h6 class="page-title">
+                    客户搜索</h6></a>
+                <div class="collapse show" id="searchForm">
+                    <div class="card">
+                        <form class="form-horizontal" action="searchResult" method="post">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="padding: 20px">
+                                    <h6 class="panel-title">客户搜索</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label for="" class="col-sm-2 control-label">关键词</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="keywords" class="form-control"
+                                                   placeholder="请输入任意客户信息进行搜索...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding: 25px">
+                                <button class="btn btn-primary" type="submit">搜索</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <a style="text-decoration: none" href="#client" data-toggle="collapse"><h6 class="page-title">新增客户</h6>
+                </a>
+                <div id="client" class="collapse">
+                    <div class="card">
+                        <form class="form-horizontal" id="form" action="addClient" method="post">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="padding: 20px">
+                                    <h6 class="panel-title">新增客户</h6>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-group" style="padding-left: 26px">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">客户中文名</label>
+                                                <input value="小秘密" type="text" name="cn_name" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">客户英文名</label>
+                                                <input value="666666" type="text" name="en_name" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">客户简称</label>
+                                                <input value="666666" type="text" name="short_name" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">客户所在省市区</label>
+                                                <div data-toggle="distpicker">
+                                                    <select name="province"></select>
+                                                    <select name="city"></select>
+                                                    <select name="district"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">负责人</label>
+                                                <input value="666666" type="text" name="charge_man" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">负责人联系电话</label>
+                                                <input value="17824850696" type="text" name="charge_phone"
+                                                       class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">客户地址</label>
+                                                <input value="666666" type="text" name="address" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">电子邮箱</label>
+                                                <input value="666666@qq.com" type="email" name="email"
+                                                       class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">邮政编码</label>
+                                                <input value="666666" type="text" name="zipcode" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">开户银行</label>
+                                                <input value="666666" type="text" name="deposit_bank"
+                                                       class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <label for="" class="col-sm-5 control-label">银行账户</label>
+                                                <input type="text" name="bank_account" class="form-control"
+                                                       placeholder="">
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <label for="" class="col-sm-5 control-label">联系人</label>
+                                                <div class="input-group">
+                                                    <input type="hidden" name="contactArr" id="contactArr">
+                                                    <span class="input-group-btn"><button class="btn btn-primary "
+                                                                                          data-toggle="modal"
+                                                                                          data-target="#myModal"
+                                                                                          type="button">添加</button></span>
+                                                </div><!-- /input-group -->
+                                            </div><!-- /.col-lg-6 -->
+
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                                 aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document" style="width: 600px;">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="myModalLabel">选择联系人</h4>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close"><span
+                                                                    aria-hidden="true">&times;</span></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div style="min-height: 200px;">
+                                                                <label class="col-sm-5 control-label">搜索联系人</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control"
+                                                                           id="keywords"
+                                                                           placeholder="请输入任意联系人信息进行搜索...">
+                                                                    <span class="input-group-btn"><button
+                                                                            class="btn btn-primary"
+                                                                            id="search_contact"
+                                                                            type="button">查询</button></span>
+                                                                </div>
+                                                                <table class="table table-striped"
+                                                                       style="text-align: center;">
+                                                                    <thead>
+                                                                    <tr>
+                                                                        <th>姓名</th>
+                                                                        <th>称谓</th>
+                                                                        <th>手机</th>
+                                                                        <th>删除</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody id="tbody">
+
+                                                                    </tbody>
+                                                                </table>
+                                                                <div class="contact_result"
+                                                                     style="display: flex;flex-wrap: wrap;justify-content: flex-start;margin-top: 5px;">
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default"
+                                                                        data-dismiss="modal">关闭
+                                                                </button>
+                                                                <button type="button" class="btn btn-primary"
+                                                                        id="confirmContact"
+                                                                        data-dismiss="modal">确认
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="padding: 25px">
+                                    <button class="btn btn-primary" type="submit">新增客户</button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h6 class="page-title">现有客户管理</h6>
+                <div class="card">
+                    <table class="table table-striped" style="text-align: center">
+                        <thead>
+                        <tr>
+                            <th>客户编号</th>
+                            <th>中文名</th>
+                            <th>负责人</th>
+                            <th>负责人联系方式</th>
+                            <th>电子邮箱</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach name='field' key='key' item='vo'}
+                        <tr>
+                            <td>{$vo['client_id']}</td>
+                            <td>{$vo['cn_name']}</td>
+                            <td>{$vo['charge_man']}</td>
+                            <td>{$vo['charge_phone']}</td>
+                            <td>{$vo['email']}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="del({$vo['client_id']})">删除</button>
+                                <button class="btn btn-primary btn-sm" onclick="change({$vo['client_id']})">详情</button>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function del(client_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?client_id=' + client_id;
+        } else {
+
+        }
+    }
+
+    function change(client_id) {
+        location.href = "{:url('change')}" + '?client_id=' + client_id;
+    }
+</script>
+{/block}
+{block name="script"}
+<script>
+    $(function () {
+        let contact_result = [];
+        let contact_result_length = [];
+        $('#search_contact').on('click', function () {
+            $('.contact_result').html('');
+            const keywords = $('#keywords').val();
+            $.post('/index/client/searchContact', {"keywords": keywords}, function (data) {
+                if (data.msg === '查询失败！') {
+                    alert('不存在此联系人,请重新查询!');
+                } else {
+                    contact_result = data.data;
+                    contact_result_length = data.data.length;
+                    for (let i = 0; i < contact_result_length; i++) {
+                        $('.contact_result').append(`<div  class="contact_res col-sm-4" id="${i}" style="flex:1;background: #f1f2f3;line-height: 40px;text-align: center;padding: 2px;font-size: 20px;margin-bottom: 5px;cursor: pointer;border-radius: 20px;">${data.data[i].name}</div>`)
+                    }
+                }
+            });
+        });
+        let tbody = $($('#tbody'));
+        $('.contact_result').on('click', ".contact_res", function () {
+            //判断是否有重复货物
+            let tr = tbody.children('tr');
+            let trAmount = tbody.children('tr').length;
+            let contact_id = contact_result[this.id].contact_id;//即将添加的货物id
+            for (let i = 0; i < trAmount; i++) {
+                let nowId = parseInt($(tr[i]).children('input.contact_id').val());
+                if (contact_id === nowId) {
+                    alert('联系人重复！请勿重复添加!');
+                    return false;
+                }
+            }
+            tbody.append(`
+            <tr>
+            <input class="contact_id" type="hidden" value="${contact_result[this.id].contact_id}">
+            <td class="name">${contact_result[this.id].name}</td>
+            <td >${contact_result[this.id].salutation}</td>
+            <td class="salutation">${contact_result[this.id].mobile_phone}</td>
+            <td><button type="button" class="delContact btn btn-danger" >删除</button></td></tr>`);
+            $('.contact_result').html('');
+        });
+
+        let concatArray = [];
+        $('#confirmContact').on('click', function () {
+            let trLength = $(this).parent().prev().find('tbody').children('tr').length;
+            for (let i = 0; i < trLength; i++) {
+                let tr = $($(this).parent().prev().find('tbody').children('tr')[i]);
+                concatArray.push({
+                    'contact_id': tr.children("input.contact_id").val(),
+                    'name': tr.children("td.name").html(),
+                });
+            }
+            $('#contactArr').val(JSON.stringify(concatArray));
+        });
+        tbody.on('click', ".delContact", function () {
+            $(this).parent().parent().remove();
+        });
+    })
+</script>{/block}
