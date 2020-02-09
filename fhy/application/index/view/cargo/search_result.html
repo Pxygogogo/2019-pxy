@@ -1,0 +1,92 @@
+{extend name="base" /}
+{block name="cargo"}
+<a href="{:url('index/cargo/index')}" class="active list-group-item list-group-item-action waves-effect">
+    <i class="fas fa-table mr-3"></i>货物管理</a>
+{/block}
+
+{block name="main"}
+
+<!--Grid row-->
+<div class="row wow fadeIn">
+    <div style="text-align: center;margin-left:40%;"><h2 class="page-title">搜索结果</h2></div>
+
+
+    <!--Grid column-->
+    <div class="col-md-12">
+
+        <!--        <div>-->
+        <!--            <button type="button" class="btn btn-primary">增加货物</button>-->
+        <!--        </div>-->
+
+        <!--Card-->
+        <div class="card">
+
+            <!--Card content-->
+            <div class="card-body">
+
+                <!-- Table  -->
+                <table class="table table-hover">
+                    <!-- Table head -->
+                    <thead class="blue-grey lighten-4">
+                    <tr>
+                        <th>货物编号</th>
+                        <th>货物名称</th>
+                        <th>货物类型</th>
+                        <th>计量单位</th>
+                        <th>保鲜温度（摄氏度）</th>
+                        <th>保质期（天）</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <!-- Table head -->
+
+                    <!-- Table body -->
+                    <tbody>
+                    {foreach name='cargo' key='key' item='vo'}
+                    <tr style="border-bottom: 1px solid #dee2e6;">
+                        <td>{$vo['cargo_id']}</td>
+                        <td>{$vo['name']}</td>
+                        <td>{$vo['kind']}</td>
+                        <td>{$vo['unit']}</td>
+                        <td>{$vo['temp']}</td>
+                        <td>{$vo['deadline']}</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" onclick="del({$vo['cargo_id']})">删除</button>
+                            <button class="btn btn-primary btn-sm" onclick="change({$vo['cargo_id']})">修改</button>
+                        </td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                    <!-- Table body -->
+                </table>
+                <!-- Table  -->
+
+            </div>
+
+        </div>
+        <!--/.Card-->
+
+    </div>
+    <!--Grid column-->
+
+
+</div>
+<!--Grid row-->
+
+{/block}
+
+{block name="script"}
+<script>
+    function del(cargo_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?cargo_id=' + cargo_id;
+        } else {
+
+        }
+    }
+
+    function change(cargo_id) {
+        location.href = "{:url('change')}" + '?cargo_id=' + cargo_id;
+    }
+</script>
+{/block}

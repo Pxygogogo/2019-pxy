@@ -1,0 +1,162 @@
+{extend name="base" /}
+{block name="custom"}
+<a href="{:url('index/custom/index')}" class="active list-group-item list-group-item-action waves-effect">
+    <i class="fas fa-map mr-3"></i>客户管理</a>
+{/block}
+
+{block name="main"}
+
+<!--Grid row-->
+<div class="row wow fadeIn">
+
+
+    <div style="text-align: center;margin-left:38%;margin-top: 20px;"><h2 class="page-title">搜索结果</h2></div>
+    <!--Grid column-->
+    <div class="col-md-12">
+
+        <!--        <div>-->
+        <!--            <button type="button" class="btn btn-primary">增加货物</button>-->
+        <!--        </div>-->
+
+        <!--Card-->
+        <div class="card">
+
+            <!--Card content-->
+            <div class="card-body">
+
+                <!-- Table  -->
+                <table class="table table-hover">
+                    <!-- Table head -->
+                    <thead class="blue-grey lighten-4">
+                    <tr style="text-align: center">
+                        <th>编号</th>
+                        <th>中文名</th>
+                        <th>英文名</th>
+                        <th>所在省市区</th>
+                        <th>负责人</th>
+                        <th>负责人联系方式</th>
+                        <th>邮箱</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <!-- Table head -->
+
+                    <!-- Table body -->
+                    <tbody>
+                    {foreach name='custom' key='key' item='vo'}
+                    <tr style="border-bottom: 1px solid #dee2e6; text-align: center;">
+                        <td>{$vo['custom_id']}</td>
+                        <td>{$vo['cname']}</td>
+                        <td>{$vo['ename']}</td>
+                        <td>{$vo['area']}</td>
+                        <td>{$vo['principle']}</td>
+                        <td>{$vo['prin_phone']}</td>
+                        <td>{$vo['email']}</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" onclick="del({$vo['custom_id']})">删除</button>
+                            <button class="btn btn-primary btn-sm" onclick="change({$vo['custom_id']})">修改</button>
+                        </td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                    <!-- Table body -->
+                </table>
+                <!-- Table  -->
+
+            </div>
+
+        </div>
+        <!--/.Card-->
+
+    </div>
+    <!--Grid column-->
+
+
+</div>
+<!--Grid row-->
+
+{/block}
+
+{block name="script"}
+<script>
+    function del(custom_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?custom_id=' + custom_id;
+        } else {
+
+        }
+    }
+
+    function change(custom_id) {
+        location.href = "{:url('change')}" + '?custom_id=' + custom_id;
+    }
+</script>
+
+<script>
+    $(function () {
+        let contact_result = [];
+        let contact_result_length = [];
+        $('#search_contact1').on('click', function () {
+            $('.contact_result1').html('');
+            const contact_name = $('#contact1').val();
+            $.post('/index/custom/searchContact', {"contact_name": contact_name}, function (data) {
+                if (data.msg === '查询失败！') {
+                    $('.contact_result1').append('不存在此联系人,请重新查询');
+                } else {
+                    contact_result = data.data;
+                    contact_result_length = data.data.length;
+                    for (let i = 0; i < contact_result_length; i++) {
+                        $('.contact_result1').append(`<div class="contact_res col-sm-4" id="${i}" style="background: #f1f2f3;line-height: 40px;text-align: center;padding: 2px;font-size: 20px;margin-bottom: 5px;cursor: pointer;border-radius: 20px;">${data.data[i].name}</div>`)
+                    }
+                }
+            });
+        });
+        $('.contact_result1').on('click', ".contact_res", function () {
+            $('#contact1').val(contact_result[this.id].name);
+            $('.contact_result1').html('');
+        });
+        //联系人2
+        $('#search_contact2').on('click', function () {
+            $('.contact_result2').html('');
+            const contact_name = $('#contact2').val();
+            $.post('/index/custom/searchContact', {"contact_name": contact_name}, function (data) {
+                if (data.msg === '查询失败！') {
+                    $('.contact_result2').append('不存在此联系人,请重新查询');
+                } else {
+                    contact_result = data.data;
+                    contact_result_length = data.data.length;
+                    for (let i = 0; i < contact_result_length; i++) {
+                        $('.contact_result2').append(`<div class="contact_res col-sm-4" id="${i}" style="background: #f2f2f3;line-height: 40px;text-align: center;padding: 2px;font-size: 20px;margin-bottom: 5px;cursor: pointer;border-radius: 20px;">${data.data[i].name}</div>`)
+                    }
+                }
+            });
+        });
+        $('.contact_result2').on('click', ".contact_res", function () {
+            $('#contact2').val(contact_result[this.id].name);
+            $('.contact_result2').html('');
+        });
+        //联系人2
+        $('#search_contact3').on('click', function () {
+            $('.contact_result3').html('');
+            const contact_name = $('#contact3').val();
+            $.post('/index/custom/searchContact', {"contact_name": contact_name}, function (data) {
+                if (data.msg === '查询失败！') {
+                    $('.contact_result3').append('不存在此联系人,请重新查询');
+                } else {
+                    contact_result = data.data;
+                    contact_result_length = data.data.length;
+                    for (let i = 0; i < contact_result_length; i++) {
+                        $('.contact_result3').append(`<div class="contact_res col-sm-4" id="${i}" style="background: #f2f2f3;line-height: 40px;text-align: center;padding: 2px;font-size: 20px;margin-bottom: 5px;cursor: pointer;border-radius: 20px;">${data.data[i].name}</div>`)
+                    }
+                }
+            });
+        });
+        $('.contact_result3').on('click', ".contact_res", function () {
+            $('#contact3').val(contact_result[this.id].name);
+            $('.contact_result3').html('');
+        });
+
+
+    })
+</script>
+{/block}

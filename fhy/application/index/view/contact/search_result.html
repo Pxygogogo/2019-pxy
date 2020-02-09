@@ -1,0 +1,97 @@
+{extend name="base" /}
+{block name="contact"}
+<a href="{:url('index/contact/index')}" class="active list-group-item list-group-item-action waves-effect">
+    <i class="fas fa-map mr-3"></i>联系人管理</a>
+{/block}
+
+{block name="main"}
+
+<!--Grid row-->
+<div class="row wow fadeIn">
+
+
+    <div style="text-align: center;margin-left:38%;margin-top: 20px;"><h2 class="page-title">搜索结果</h2></div>
+
+    <!--Grid column-->
+    <div class="col-md-12">
+
+        <!--        <div>-->
+        <!--            <button type="button" class="btn btn-primary">增加货物</button>-->
+        <!--        </div>-->
+
+        <!--Card-->
+        <div class="card">
+
+            <!--Card content-->
+            <div class="card-body">
+
+                <!-- Table  -->
+                <table class="table table-hover">
+                    <!-- Table head -->
+                    <thead class="blue-grey lighten-4">
+                    <tr style="text-align: center">
+                        <th>编号</th>
+                        <th>姓名</th>
+                        <th>称谓</th>
+                        <th>手机</th>
+                        <th>电话</th>
+                        <th>传真</th>
+                        <th>邮箱</th>
+                        <th>客户</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <!-- Table head -->
+
+                    <!-- Table body -->
+                    <tbody>
+                    {foreach name='contact' key='key' item='vo'}
+                    <tr style="border-bottom: 1px solid #dee2e6; text-align: center;">
+                        <td>{$vo['contact_id']}</td>
+                        <td>{$vo['name']}</td>
+                        <td>{$vo['title']}</td>
+                        <td>{$vo['phone']}</td>
+                        <td>{$vo['telephone']}</td>
+                        <td>{$vo['fax']}</td>
+                        <td>{$vo['email']}</td>
+                        <td>{$vo['custom_name']}</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" onclick="del({$vo['contact_id']})">删除</button>
+                            <button class="btn btn-primary btn-sm" onclick="change({$vo['contact_id']})">修改</button>
+                        </td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                    <!-- Table body -->
+                </table>
+                <!-- Table  -->
+
+            </div>
+
+        </div>
+        <!--/.Card-->
+
+    </div>
+    <!--Grid column-->
+
+
+</div>
+<!--Grid row-->
+
+{/block}
+
+{block name="script"}
+<script>
+    function del(contact_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?contact_id=' + contact_id;
+        } else {
+
+        }
+    }
+
+    function change(contact_id) {
+        location.href = "{:url('change')}" + '?contact_id=' + contact_id;
+    }
+</script>
+{/block}

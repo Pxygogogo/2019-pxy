@@ -1,0 +1,151 @@
+{extend name="base" /}
+{block name="order"}
+<a href="{:url('index/order/index')}" class="active list-group-item list-group-item-action waves-effect">
+    <i class="fas fa-money-bill-alt mr-3"></i>订单管理</a>
+{/block}
+
+{block name="main"}
+
+<!--Grid row-->
+<div class="row wow fadeIn">
+
+    <div style="text-align: center;margin-left:40%;"><h2 class="page-title">订单详情</h2></div>
+    <div class="col-md-12">
+        <div id="cargo" class="collapse show">
+            <div class="card">
+                <form class="form-horizontal" id="form" action="addOrder" method="post">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="padding: 20px">
+                            <h6 class="panel-title">订单详情</h6>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group" style="padding-left: 26px">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <input disabled type="hidden" id="order_id" name="order_id"
+                                               value="{$order['order_id']}">
+                                        <label for="" class="col-sm-5 control-label">客户名称</label>
+                                        <div class="input-group">
+                                            <input disabled type="text" id="client_name" name="client_name"
+                                                   class="form-control"
+                                                   placeholder="请输入客户名称" value="{$order['custom_name']}">
+                                        </div><!-- /input-group -->
+                                    </div><!-- /.col-lg-6 -->
+                                    <div class="col-lg-5">
+                                        <label for="" class="col-sm-5 control-label">货物名称</label>
+                                        <div class="input-group">
+                                            <div class="input-group">
+                                                {foreach name='$cargoArr' key='key' item='vo' }
+                                                <div style="position: relative;height: 80px;margin-left: 20px;text-align: center;">
+                                                    <button type="button" class="btn btn-primary cargo_id"
+                                                            id="${$vo['cargo_id']}">
+                                                        {$vo['cargo_name']}
+                                                    </button>
+                                                    <div style="width:100%;position:absolute;bottom: 0;">
+                                                        {$vo['cargo_count']}{$vo['measure_unit']}
+                                                    </div>
+                                                </div>
+                                                {/foreach}
+                                            </div><!-- /input-group -->
+                                        </div><!-- /input-group -->
+                                    </div><!-- /.col-lg-6 -->
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <div id="client_result">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div id="cargo_result">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">发货人</label>
+                                        <input disabled type="text" name="sender" class="form-control"
+                                               placeholder="" value="{$order['sender']}">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">发货人联系电话</label>
+                                        <input disabled type="text" name="sender_phone" class="form-control"
+                                               placeholder="" value="{$order['sender_phone']}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">发货地省市区</label>
+                                        <input disabled type="text" name="sender_area" class="form-control"
+                                               placeholder="" value="{$order['sender_area']}">
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">发货详细地址</label>
+                                        <input disabled type="text" name="sender_location" class="form-control"
+                                               placeholder="" value="{$order['sender_location']}">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">发货人电子邮箱</label>
+                                        <input disabled type="email" name="sender_email" class="form-control"
+                                               placeholder="" value="{$order['sender_email']}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">收货人</label>
+                                        <input disabled type="text" name="receiver" class="form-control"
+                                               placeholder="" value="{$order['receiver']}">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">收货人联系电话</label>
+                                        <input disabled type="text" name="receiver_phone" class="form-control"
+                                               placeholder="" value="{$order['receiver_phone']}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">收货地省市区</label>
+                                        <input disabled type="text" name="receiver_area" class="form-control"
+                                               placeholder="" value="{$order['receiver_area']}">
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">收货人详细地址</label>
+                                        <input disabled type="text" name="receiver_location" class="form-control"
+                                               placeholder="" value="{$order['receiver_location']}">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">收货人电子邮箱</label>
+                                        <input disabled type="email" name="receiver_email" class="form-control"
+                                               placeholder="" value="{$order['receiver_email']}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">下单日期</label>
+                                        <input disabled type="text" name="date" class="form-control"
+                                               placeholder="" value="{$order['date']}">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Grid row-->
+
+{/block}
+
+{block name="script"}
+
+{/block}

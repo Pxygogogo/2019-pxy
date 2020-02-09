@@ -1,0 +1,131 @@
+{extend name="base" /}
+{block name="user"}
+<a href="{:url('index/usermanage/index')}" class="active list-group-item list-group-item-action waves-effect">
+    <i class="fas fa-user mr-3"></i>用户管理</a>
+{/block}
+
+{block name="main"}
+
+<!--Grid row-->
+<div class="row wow fadeIn">
+    <div style="text-align: center;margin-left:40%;"><h2 class="page-title">用户搜索</h2></div>
+    <div class="col-md-12">
+        <div class="collapse show" id="searchForm">
+            <div class="card">
+                <form class="form-horizontal" action="searchResult" method="post">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="padding: 20px">
+                            <h6 class="panel-title">用户搜索</h6>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">关键词</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="keywords" class="form-control"
+                                           placeholder="请输入任意用户信息进行搜索...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 25px">
+                        <button class="btn btn-primary" type="submit">搜索</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center;margin-left:40%;"><h2 class="page-title">新增用户</h2></div>
+    <div class="col-md-12">
+        <div id="cargo" class="collapse show">
+            <div class="card">
+                <form class="form-horizontal" id="form" action="addUser" method="post">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="padding: 20px">
+
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">用户名称</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="username" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">用户角色</label>
+                                <div class="col-sm-9">
+                                    <select class="js-example-basic-single form-control" name="role">
+                                        <option value="service_person">客服</option>
+                                        <option value="assessor">审核员</option>
+                                        <option value="dba">系统管理员</option>
+                                        <option value="basic_person">基础数据管理员</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">初始密码</label>
+                                <div class="col-sm-9">
+                                    <input type="password" name="password" class="form-control"
+                                           placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 25px">
+                        <button class="btn btn-primary" type="submit">确定新增</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center;margin-left:38%;margin-top: 20px;"><h2 class="page-title">现有用户管理</h2></div>
+
+    <div class="col-md-12">
+        <h6 class="page-title">现有用户管理</h6>
+        <div class="card">
+            <table class="table table-striped" style="text-align: center">
+                <thead>
+                <tr>
+                    <th>用户编号</th>
+                    <th>名称</th>
+                    <th>角色</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {foreach name='field' key='key' item='vo'}
+                <tr>
+                    <td>{$vo['admin_id']}</td>
+                    <td>{$vo['username']}</td>
+                    <td>{$vo['role']}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" onclick="del({$vo['admin_id']})">删除</button>
+                        <button class="btn btn-primary btn-sm" onclick="change({$vo['admin_id']})">详情</button>
+                    </td>
+                </tr>
+                {/foreach}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!--Grid row-->
+
+{/block}
+
+{block name="script"}
+<script>
+    function del(admin_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?admin_id=' + admin_id;
+        } else {
+
+        }
+    }
+
+    function change(admin_id) {
+        location.href = "{:url('change')}" + '?admin_id=' + admin_id;
+    }
+</script>
+{/block}

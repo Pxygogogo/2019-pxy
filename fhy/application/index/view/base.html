@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>OMS</title>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="__STATIC__/css/all.css">
+        <!-- Bootstrap core CSS -->
+        <link href="__STATIC__/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="__STATIC__/css/mdb.min.css" rel="stylesheet">
+        <!-- Your custom styles (optional) -->
+        <link href="__STATIC__/css/style.min.css" rel="stylesheet">
+
+        <style>
+
+            .map-container {
+                overflow: hidden;
+                padding-bottom: 56.25%;
+                position: relative;
+                height: 0;
+            }
+
+            .map-container iframe {
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                position: absolute;
+            }
+        </style>
+    </head>
+
+    <body class="grey lighten-3">
+
+    <!--Main Navigation-->
+    <header>
+
+
+        <!-- Sidebar -->
+        <div class="sidebar-fixed position-fixed">
+
+            <a class="logo-wrapper waves-effect">
+                <img src="__STATIC__/img/mdb.png" class="img-fluid" alt="">
+            </a>
+
+            <div class="list-group list-group-flush">
+                {block name="index"}
+                <a href="{:url('index/entry/index')}" class="list-group-item  list-group-item-action waves-effect">
+                    <i class="fas fa-chart-pie mr-3"></i>首页
+                </a>
+                {/block}
+                {block name="cargo"}
+                <a href="{:url('index/cargo/index')}" class="list-group-item list-group-item-action waves-effect">
+                    <i class="fas fa-table mr-3"></i>货物管理</a>
+                {/block}
+                {block name="contact"}
+                <a href="{:url('index/contact/index')}" class="list-group-item list-group-item-action waves-effect">
+                    <i class="fas fa-map mr-3"></i>联系人管理</a>
+                {/block}
+                {block name="custom"}
+                <a href="{:url('index/custom/index')}" class="list-group-item list-group-item-action waves-effect">
+                    <i class="fas fa-map mr-3"></i>客户管理</a>
+                {/block}
+                {block name="user"}
+                <a href="{:url('index/usermanage/index')}" class="list-group-item list-group-item-action waves-effect">
+                    <i class="fas fa-user mr-3"></i>用户管理</a>
+                {/block}
+                {block name="order"}
+                <a href="{:url('index/order/index')}" class="list-group-item list-group-item-action waves-effect">
+                    <i class="fas fa-money-bill-alt mr-3"></i>订单管理</a>
+                {/block}
+                {block name="logout"}
+                <a href="{:url('index/entry/logout')}" class="list-group-item list-group-item-action waves-effect">
+                    <i class="fas fa-minus-circle mr-3"></i>退出登录</a>
+                {/block}
+            </div>
+
+        </div>
+        <!-- Sidebar -->
+
+    </header>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main class="pt-5 mx-lg-5">
+        <div class="container-fluid mt-5">
+            {block name="main"}
+
+            {/block}
+        </div>
+    </main>
+
+    <!--Main layout-->
+
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="__STATIC__/js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="__STATIC__/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/js/bootstrap-toggle.min.js"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="__STATIC__/js/popper.min.js"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="__STATIC__/js/mdb.min.js"></script>
+
+
+    </body>
+    {block name="script"}{/block}
+</html>

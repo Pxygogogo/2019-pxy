@@ -1,0 +1,76 @@
+{extend name="base" /}
+{block name="contact"}
+<a href="{:url('index/contact/index')}" class="list-group-item list-group-item-action active waves-effect">
+    <i class="fas fa-map mr-3"></i>联系人管理</a>
+{/block}
+
+{block name="main"}
+
+<!--Grid row-->
+<div class="row wow fadeIn">
+    <div style="text-align: center;margin-left:40%;"><h2 class="page-title">联系人详情</h2></div>
+    <div class="col-md-12">
+        <div id="cargo" class="collapse show">
+            <div class="card">
+                <form class="form-horizontal" id="form" action="updateData" method="post">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" style="padding: 20px">
+                            <h6 class="panel-title">联系人详情</h6>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group" style="padding-left: 26px">
+                                <input value="{$contact['contact_id']}" type="hidden" name="contact_id"
+                                       class="form-control" placeholder="">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">联系人姓名</label>
+                                        <input type="text" name="name" class="form-control" placeholder=""
+                                               value="{$contact['name']}">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">联系人称谓</label>
+                                        <input type="text" name="title" class="form-control"
+                                               placeholder="" value="{$contact['title']}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">联系人手机</label>
+                                        <input type="text" name="phone" class="form-control"
+                                               placeholder="" value="{$contact['phone']}">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">联系人电话</label>
+                                        <input type="text" name="telephone" class="form-control" placeholder=""
+                                               value="{$contact['telephone']}">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">联系人传真</label>
+                                        <input type="text" name="fax" class="form-control" placeholder=""
+                                               value="{$contact['fax']}">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <label for="" class="col-sm-5 control-label">联系人电子邮箱</label>
+                                        <input type="text" name="email" class="form-control" placeholder=""
+                                               value="{$contact['email']}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 25px">
+                        <button class="btn btn-primary" type="submit">确认修改</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!--Grid row-->
+
+{/block}
+
