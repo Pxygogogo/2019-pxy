@@ -1,0 +1,75 @@
+{extend name="base"/}
+{block name="client"}
+<li><a class="waves-effect waves-dark active" href="{:url('index/client/index')}"
+       aria-expanded="false"><i
+        class="mdi mdi-emoticon"></i><span class="hide-menu">客户信息管理</span></a></li>
+{/block}
+{block name="body"}
+
+<div class="row">
+    <!-- column -->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">客户信息表</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>客户ID</th>
+                            <th>中文名</th>
+                            <th>负责人</th>
+                            <th>负责人电话</th>
+                            <th>省市区</th>
+                            <th>邮箱</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach name='field' key='key' item='item'}
+                        <tr>
+                            <td>{$item['client_id']}</td>
+                            <td>{$item['chinese_name']}</td>
+                            <td>{$item['leader']}</td>
+                            <td>{$item['leader_telnumber']}</td>
+                            <td>{$item['client_region']}</td>
+                            <td>{$item['client_email']}</td>
+                            <td>
+                                <button class="btn btn-primary btn-md" onclick="Linkman({$item['client_id']})">
+                                    添加联系人
+                                </button>
+                                <button class="btn btn-danger btn-md" onclick="del({$item['client_id']})">删除</button>
+                                <button class="btn btn-primary btn-md" onclick="change({$item['client_id']})">修改
+                                </button>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}
+
+{block name="script"}
+<script>
+    function del(client_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?client_id=' + client_id;
+        } else {
+
+        }
+    }
+
+    function change(client_id) {
+        location.href = "{:url('change')}" + '?client_id=' + client_id;
+    }
+
+    function Linkman(client_id) {
+        location.href = "{:url('Linkman')}" + '?client_id=' + client_id;
+    }
+</script>
+{/block}

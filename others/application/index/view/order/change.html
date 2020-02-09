@@ -1,0 +1,159 @@
+{extend name="base"/}
+{block name="order"}
+<li><a class="waves-effect waves-dark active" href="{:url('index/order/index')}" aria-expanded="false"><i
+        class="mdi mdi-book-open-variant"></i><span class="hide-menu">订单信息管理</span></a></li>
+{/block}
+{block name="body"}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form action="updateData" method="post">
+                <div class="form-group" style="padding-left: 26px">
+                    <h2>订单详情</h2>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-lg-5">
+                            <input type="hidden" id="=order_id" name="order_id" value="{$order['order_id']}">
+                            <input type="hidden" id="client_id" name="client_id" value="{$order['client_id']}">
+                            <label for="" class="col-sm-5 control-label">客户名称</label>
+                            <div class="input-group">
+                                <input value="{$order['client_name']}" type="text" id="client_name" name="client_name"
+                                       class="form-control"
+                                       placeholder="请输入客户名称">
+                                <!--                                                            <span class="input-group-btn"><button-->
+                                <!--                                                                    class="btn btn-primary"-->
+                                <!--                                                                    id="search_client"-->
+                                <!--                                                                    type="button">查询</button></span>-->
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                        <div class="col-sm-5">
+                            <label for="" class="col-sm-5 control-label">发货人</label>
+                            <input value="{$order['consigner_name']}" type="text" name="consigner_name"
+                                   class="form-control"
+                                   placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 20px;">
+
+                        <div class="col-sm-5">
+                            <label for="" class="col-sm-5 control-label">发货人联系电话</label>
+                            <input value="{$order['consigner_telnumber']}" type="text" name="consigner_telnumber"
+                                   class="form-control"
+                                   placeholder="">
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="" class="col-sm-5 control-label">发货人省市区</label>
+                            <input value="{$order['consigner_region']}" type="text" name="consigner_region"
+                                   class="form-control"
+                                   placeholder="">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-sm-5">
+                            <label for="" class="col-sm-5 control-label">发货详细地址</label>
+                            <input value="{$order['consigner_address']}" type="text" name="consigner_address"
+                                   class="form-control"
+                                   placeholder="">
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="" class="col-sm-5 control-label">发货人电子邮箱</label>
+                            <input value="{$order['consigner_email']}" type="email" name="consigner_email"
+                                   class="form-control"
+                                   placeholder="">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-sm-5">
+                            <label for="" class="col-sm-5 control-label">收货人</label>
+                            <input value="{$order['consignee_name']}" type="text" name="consignee_name"
+                                   class="form-control"
+                                   placeholder="">
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="" class="col-sm-5 control-label">收货人联系电话</label>
+                            <input value="{$order['consignee_telnumber']}" type="text" name="consignee_telnumber"
+                                   class="form-control"
+                                   placeholder="">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-sm-5">
+                            <label for="" class="col-sm-5 control-label">收货人省市区</label>
+                            <input value="{$order['consignee_region']}" type="text" name="consignee_region"
+                                   class="form-control"
+                                   placeholder="">
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="" class="col-sm-5 control-label">收货人详细地址</label>
+                            <input value="{$order['consignee_address']}" type="text" name="consignee_address"
+                                   class="form-control"
+                                   placeholder="">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+
+                        <div class="col-sm-5">
+                            <label for="" class="col-sm-5 control-label">收货人电子邮箱</label>
+                            <input value="{$order['consignee_email']}" type="email" name="consignee_email"
+                                   class="form-control"
+                                   placeholder="">
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="" class="col-sm-5 control-label">下单日期</label>
+                            <input value="{$order['order_date']}" type="text" name="order_date" class="form-control"
+                                   placeholder="">
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div style="padding-left: 20px">
+                            <h2>已选择的货物</h2>
+                            <h6>如需修改货物，请到订单信息管理首页，选择添加货物进行修改。</h6>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table" id="cargoTable">
+                                <thead>
+                                <tr>
+                                    <th>货物ID</th>
+                                    <th>货物名称</th>
+                                    <th>货物数量</th>
+                                </tr>
+                                </thead>
+                                <tbody id="cargoTbody">
+                                {foreach name='cargoArr' key='key' item='item'}
+                                <tr>
+                                    <input disabled type="hidden" class="cargo_id" name="cargo_id"
+                                           value="{$item['cargo_id']}">
+                                    <td class="cargo_id">{$item['cargo_id']}</td>
+                                    <td class="cargo_name">{$item['cargo_name']}</td>
+                                    <td><input disabled name="cargo_count" type="text" value="{$item['cargo_count']}">
+                                    </td>
+
+                                </tr>
+                                {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="padding: 20px;">
+                    <button type="submit" class="btn btn-primary btn-md">
+                        确认修改
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{/block}
+
+{block name="script"}
+<script>
+    $(function () {
+
+    })
+
+</script>
+{/block}

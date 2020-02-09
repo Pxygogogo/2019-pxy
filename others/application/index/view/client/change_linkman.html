@@ -1,0 +1,106 @@
+{extend name="base"/}
+{block name="client"}
+<li><a class="waves-effect waves-dark active" href="{:url('index/client/index')}"
+       aria-expanded="false"><i
+        class="mdi mdi-emoticon"></i><span class="hide-menu">客户信息管理</span></a></li>
+{/block}
+{block name="body"}
+<div class="row">
+    <div class="col-md-12">
+        <div class="collapse show" id="searchForm">
+            <div style="display: flex;justify-content: flex-start;">
+                <div class="card" style="flex: 1">
+                    <div style="padding: 20px">
+                        <h1 class="panel-title">修改联系人信息</h1>
+                    </div>
+                    <div class="row">
+                        <form action="updateLinkmanData" method="post">
+                            <div style="margin-left: 50px;">
+                                <div class="form-group" style="padding-left: 26px">
+                                    <input type="hidden" name="link_id"
+                                           value="{$linkman['link_id']}">
+                                    <input type="hidden" name="client_id"
+                                           value="{$linkman['client_id']}">
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <div class="col-sm-5">
+                                            <label for=""
+                                                   class="col-sm-5 control-label">姓名</label>
+                                            <input value="{$linkman['link_name']}" type="text" name="link_name"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for=""
+                                                   class="col-sm-5 control-label">称谓</label>
+                                            <input value="{$linkman['link_appellation']}" type="text"
+                                                   name="link_appellation"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <div class="col-sm-5">
+                                            <label for=""
+                                                   class="col-sm-5 control-label">手机</label>
+                                            <input value="{$linkman['link_phonenumber']}" type="text"
+                                                   name="link_phonenumber"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for=""
+                                                   class="col-sm-5 control-label">电话</label>
+                                            <input value="{$linkman['link_telnumber']}" type="text"
+                                                   name="link_telnumber"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <div class="col-sm-5">
+                                            <label for=""
+                                                   class="col-sm-5 control-label">传真</label>
+                                            <input value="{$linkman['fax']}" type="text" name="fax" class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for=""
+                                                   class="col-sm-5 control-label">电子邮箱</label>
+                                            <input value="{$linkman['link_email']}" type="text" name="link_email"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">
+                                        确认修改
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{/block}
+
+{block name="script"}
+<script>
+    function del(cargo_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?cargo_id=' + cargo_id;
+        } else {
+
+        }
+    }
+
+    function change(cargo_id) {
+        location.href = "{:url('change')}" + '?cargo_id=' + cargo_id;
+    }
+</script>
+{/block}

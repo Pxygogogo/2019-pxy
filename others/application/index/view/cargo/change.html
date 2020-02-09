@@ -1,0 +1,127 @@
+{extend name="base"/}
+{block name="cargo"}
+<li><a class="waves-effect waves-dark active" href="{:url('index/cargo/index')}" aria-expanded="false"><i
+        class="mdi mdi-table"></i><span class="hide-menu">货物信息管理</span></a></li>
+{/block}
+{block name="body"}
+<div class="row">
+    <div class="col-md-12">
+        <div class="collapse show" id="searchForm">
+            <div style="display: flex;justify-content: flex-start;">
+                <div class="card" style="flex: 1">
+                    <div style="padding: 20px">
+                        <h1 class="panel-title">修改货物</h1>
+                    </div>
+                    <div class="row">
+                        <form action="updateData" method="post">
+                            <div style="margin-left: 50px;">
+                                <div class="form-group" style="padding-left: 26px">
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <input value="{$cargo['cargo_id']}" type="hidden" name="cargo_id">
+                                        <div class="col-sm-6">
+                                            <label class="col-sm-5 control-label">货物名字</label>
+                                            <input value="{$cargo['cargo_name']}" type="text" name="cargo_name"
+                                                   class="form-control"
+                                                   placeholder="请输入货物名字">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="col-sm-5 control-label">货物类型</label>
+                                            <input value="{$cargo['type']}" type="text" name="type"
+                                                   class="form-control"
+                                                   placeholder="请输入货物类型">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <div class="col-sm-6">
+                                            <label class="col-sm-5 control-label">打包方式</label>
+                                            <input value="{$cargo['packing']}" type="text" name="packing"
+                                                   class="form-control"
+                                                   placeholder="请输入打包方式">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="col-sm-5 control-label">计量单位</label>
+                                            <input value="{$cargo['measure_unit']}" type="text" name="measure_unit"
+                                                   class="form-control"
+                                                   placeholder="请输入计量单位">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <div class="col-sm-6">
+                                            <label class="col-sm-5 control-label">单位长度</label>
+                                            <input value="{$cargo['unit_length']}" type="text" name="unit_length"
+                                                   class="form-control"
+                                                   placeholder="单位：厘米">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="col-sm-5 control-label">单位宽度</label>
+                                            <input value="{$cargo['unit_width']}" type="text" name="unit_width"
+                                                   class="form-control"
+                                                   placeholder="单位：厘米">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <div class="col-sm-6">
+                                            <label class="col-sm-5 control-label">单位高度</label>
+                                            <input value="{$cargo['unit_height']}" type="text" name="unit_height"
+                                                   class="form-control"
+                                                   placeholder="单位：厘米">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label
+                                                    class="col-sm-5 control-label">单位重量</label>
+                                            <input value="{$cargo['unit_weight']}" type="text" name="unit_weight"
+                                                   class="form-control"
+                                                   placeholder="单位：千克">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <div class="col-sm-6">
+                                            <label
+                                                    class="col-sm-5 control-label">保鲜温度</label>
+                                            <input value="{$cargo['preservation_temperature']}" type="text"
+                                                   name="preservation_temperature"
+                                                   class="form-control"
+                                                   placeholder="单位：摄氏度">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label
+                                                    class="col-sm-5 control-label">保质期</label>
+                                            <input value="{$cargo['expiration_date']}" type="text"
+                                                   name="expiration_date"
+                                                   class="form-control"
+                                                   placeholder="单位：月">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">
+                                        确认修改
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{/block}
+
+{block name="script"}
+<script>
+    function del(cargo_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?cargo_id=' + cargo_id;
+        } else {
+
+        }
+    }
+
+    function change(cargo_id) {
+        location.href = "{:url('change')}" + '?cargo_id=' + cargo_id;
+    }
+</script>
+{/block}

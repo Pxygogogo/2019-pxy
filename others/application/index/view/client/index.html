@@ -1,0 +1,215 @@
+{extend name="base"/}
+{block name="client"}
+<li><a class="waves-effect waves-dark active" href="{:url('index/client/index')}"
+       aria-expanded="false"><i
+        class="mdi mdi-emoticon"></i><span class="hide-menu">客户信息管理</span></a></li>
+{/block}
+{block name="body"}
+<div class="row">
+    <div class="col-md-12">
+        <div class="collapse show" id="searchForm">
+            <div style="display: flex;justify-content: flex-start;">
+                <div class="card" style="flex: 1">
+                    <form class="form-horizontal" action="searchResult" method="post">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="padding: 20px;padding-left: 40px;">
+                                <h2 class="panel-title">搜索客户</h2>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="row" style="padding-left: 30px;">
+                                        <div class="col-sm-5">
+                                            <input type="text" name="keywords" class="form-control"
+                                                   placeholder="输入以搜索...">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <button class="btn btn-primary btn-md" type="submit">搜索</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div sty>
+                <div class="card" style="flex: 1">
+                    <div style="padding: 20px">
+                        <h2 class="panel-title">添加客户</h2>
+                    </div>
+                    <div class="row">
+                        <form action="addClient" method="post">
+                            <div class="col-sm-1">
+                                <button class="btn btn-primary btn-md" type="button" data-toggle="modal"
+                                        data-target="#myModal">添加客户
+                                </button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">添加客户</h4>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close"><span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group" style="padding-left: 26px">
+                                                <div class="row" style="margin-bottom: 20px;">
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">客户中文名</label>
+                                                        <input type="text" name="chinese_name" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">客户英文名</label>
+                                                        <input type="text" name="english_name" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-bottom: 20px;">
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">客户简称</label>
+                                                        <input type="text" name="short_name" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">电子邮箱</label>
+                                                        <input type="email" name="client_email" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-bottom: 20px;">
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">负责人</label>
+                                                        <input type="text" name="leader" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">负责人电话</label>
+                                                        <input type="text" name="leader_telnumber" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-bottom: 20px;">
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">客户省市区</label>
+                                                        <input type="text" name="client_region" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">客户地址</label>
+                                                        <input type="text" name="client_address" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+
+                                                </div>
+                                                <div class="row" style="margin-bottom: 20px;">
+
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">邮政编码</label>
+                                                        <input type="text" name="zipcode" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">开户银行</label>
+                                                        <input type="text" name="deposit_bank" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-bottom: 20px;">
+
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">银行账户</label>
+                                                        <input type="text" name="bank_account" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">
+                                                确认添加
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- column -->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">客户信息表</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>客户ID</th>
+                            <th>中文名</th>
+                            <th>负责人</th>
+                            <th>负责人电话</th>
+                            <th>省市区</th>
+                            <th>邮箱</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach name='client' key='key' item='item'}
+                        <tr>
+                            <td>{$item['client_id']}</td>
+                            <td>{$item['chinese_name']}</td>
+                            <td>{$item['leader']}</td>
+                            <td>{$item['leader_telnumber']}</td>
+                            <td>{$item['client_region']}</td>
+                            <td>{$item['client_email']}</td>
+                            <td>
+                                <button class="btn btn-primary btn-md" onclick="Linkman({$item['client_id']})">
+                                    添加联系人
+                                </button>
+                                <button class="btn btn-danger btn-md" onclick="del({$item['client_id']})">删除</button>
+                                <button class="btn btn-primary btn-md" onclick="change({$item['client_id']})">修改
+                                </button>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}
+
+{block name="script"}
+<script>
+    function del(client_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?client_id=' + client_id;
+        } else {
+
+        }
+    }
+
+    function change(client_id) {
+        location.href = "{:url('change')}" + '?client_id=' + client_id;
+    }
+
+    function Linkman(client_id) {
+        location.href = "{:url('Linkman')}" + '?client_id=' + client_id;
+    }
+</script>
+{/block}

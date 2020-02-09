@@ -1,0 +1,135 @@
+{extend name="base"/}
+{block name="client"}
+<li><a class="waves-effect waves-dark" href="{:url('index/client/index')}"
+       aria-expanded="false"><i
+        class="mdi mdi-emoticon"></i><span class="hide-menu">客户信息管理</span></a></li>
+{/block}
+{block name="body"}
+<div class="row">
+    <div class="col-md-12">
+        <div class="collapse show" id="searchForm">
+            <div style="display: flex;justify-content: flex-start;">
+                <div class="card" style="flex: 1">
+                    <div style="padding: 20px">
+                        <h1 class="panel-title">修改客户信息</h1>
+                    </div>
+                    <div class="row">
+                        <form action="updateData" method="post">
+                            <div style="margin-left: 50px;">
+                                <div class="form-group" style="padding-left: 26px">
+                                    <input value="{$client['client_id']}" type="hidden" name="client_id">
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">客户中文名</label>
+                                            <input value="{$client['chinese_name']}" type="text" name="chinese_name"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">客户英文名</label>
+                                            <input value="{$client['english_name']}" type="text" name="english_name"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">客户简称</label>
+                                            <input value="{$client['short_name']}" type="text" name="short_name"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">电子邮箱</label>
+                                            <input value="{$client['client_email']}" type="email" name="client_email"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">负责人</label>
+                                            <input value="{$client['leader']}" type="text" name="leader"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">负责人电话</label>
+                                            <input value="{$client['leader_telnumber']}" type="text"
+                                                   name="leader_telnumber"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 20px;">
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">客户省市区</label>
+                                            <input value="{$client['client_region']}" type="text" name="client_region"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">客户地址</label>
+                                            <input value="{$client['client_address']}" type="text" name="client_address"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+
+                                    </div>
+                                    <div class="row" style="margin-bottom: 20px;">
+
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">邮政编码</label>
+                                            <input value="{$client['zipcode']}" type="text" name="zipcode"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">开户银行</label>
+                                            <input value="{$client['deposit_bank']}" type="text" name="deposit_bank"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom: 20px;">
+
+                                        <div class="col-sm-5">
+                                            <label for="" class="col-sm-5 control-label">银行账户</label>
+                                            <input value="{$client['bank_account']}" type="text" name="bank_account"
+                                                   class="form-control"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">
+                                        确认修改
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{/block}
+
+{block name="script"}
+<script>
+    function del(cargo_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?cargo_id=' + cargo_id;
+        } else {
+
+        }
+    }
+
+    function change(cargo_id) {
+        location.href = "{:url('change')}" + '?cargo_id=' + cargo_id;
+    }
+</script>
+{/block}

@@ -1,0 +1,171 @@
+{extend name="base"/}
+{block name="client"}
+<li><a class="waves-effect waves-dark active" href="{:url('index/client/index')}"
+       aria-expanded="false"><i
+        class="mdi mdi-emoticon"></i><span class="hide-menu">客户信息管理</span></a></li>
+{/block}
+{block name="body"}
+<div class="row">
+    <div class="col-md-12">
+        <div class="collapse show" id="searchForm">
+            <div style="display: flex;justify-content: flex-start;">
+                <div class="card" style="flex: 1">
+                    <form class="form-horizontal" action="addLinkman" method="post">
+                        <div class="panel-heading" style="padding: 20px;padding-left: 40px;">
+                            <h2 class="panel-title">请为客户：<b>{$client['chinese_name']}</b> 添加联系人</h2>
+                        </div>
+                        <div class="card" style="flex: 1;padding-left: 50px;">
+                            <div style="padding: 20px">
+                                <h2 class="panel-title">添加联系人</h2>
+                            </div>
+                            <div class="row">
+                                <form action="addLinkman" method="post">
+                                    <div class="col-sm-1">
+                                        <button class="btn btn-primary btn-md" type="button" data-toggle="modal"
+                                                data-target="#myModal">添加联系人
+                                        </button>
+                                    </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                         aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="myModalLabel">添加联系人</h4>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group" style="padding-left: 26px">
+                                                        <input type="hidden" name="client_id"
+                                                               value="{$client['client_id']}">
+                                                        <div class="row" style="margin-bottom: 20px;">
+                                                            <div class="col-sm-5">
+                                                                <label for=""
+                                                                       class="col-sm-5 control-label">姓名</label>
+                                                                <input type="text" name="link_name" class="form-control"
+                                                                       placeholder="">
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <label for=""
+                                                                       class="col-sm-5 control-label">称谓</label>
+                                                                <input type="text" name="link_appellation"
+                                                                       class="form-control"
+                                                                       placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="margin-bottom: 20px;">
+                                                            <div class="col-sm-5">
+                                                                <label for=""
+                                                                       class="col-sm-5 control-label">手机</label>
+                                                                <input type="text" name="link_phonenumber"
+                                                                       class="form-control"
+                                                                       placeholder="">
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <label for=""
+                                                                       class="col-sm-5 control-label">电话</label>
+                                                                <input type="text" name="link_telnumber"
+                                                                       class="form-control"
+                                                                       placeholder="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" style="margin-bottom: 20px;">
+                                                            <div class="col-sm-5">
+                                                                <label for=""
+                                                                       class="col-sm-5 control-label">传真</label>
+                                                                <input type="text" name="fax" class="form-control"
+                                                                       placeholder="">
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <label for=""
+                                                                       class="col-sm-5 control-label">电子邮箱</label>
+                                                                <input type="text" name="link_email"
+                                                                       class="form-control"
+                                                                       placeholder="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">
+                                                        确认添加
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- column -->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">当前客户联系人</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>名字</th>
+                            <th>称谓</th>
+                            <th>手机</th>
+                            <th>电话</th>
+                            <th>传真</th>
+                            <th>邮箱</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach name='linkman' key='key' item='item'}
+                        <tr>
+                            <td>{$item['link_name']}</td>
+                            <td>{$item['link_appellation']}</td>
+                            <td>{$item['link_phonenumber']}</td>
+                            <td>{$item['link_telnumber']}</td>
+                            <td>{$item['fax']}</td>
+                            <td>{$item['link_email']}</td>
+                            <td>
+                                <button class="btn btn-danger btn-md" onclick="delLinkman({$item['link_id']})">删除
+                                </button>
+                                <button class="btn btn-primary btn-md" onclick="changeLinkman({$item['link_id']})">修改
+                                </button>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+    function delLinkman(link_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('delLinkman')}" + '?link_id=' + link_id;
+        } else {
+
+        }
+    }
+
+    function changeLinkman(link_id) {
+        location.href = "{:url('changeLinkman')}" + '?link_id=' + link_id;
+    }
+
+</script>
+{/block}

@@ -1,0 +1,173 @@
+{extend name="base"/}
+{block name="order"}
+<li><a class="waves-effect waves-dark active" href="{:url('index/order/index')}" aria-expanded="false"><i
+        class="mdi mdi-book-open-variant"></i><span class="hide-menu">订单信息管理</span></a></li>
+{/block}
+{block name="body"}
+<div class="row">
+    <div class="col-md-12">
+        <div class="collapse show" id="searchForm">
+            <div style="display: flex;justify-content: flex-start;">
+                <div class="card" style="width: 100%;">
+                    <div class="panel-heading" style="padding: 20px;padding-left: 40px;">
+                        <h2 class="panel-title">请为客户名称为：<b>{$client['client_name']}</b>
+                            下单日期为：<b>{$client['order_date']}</b> 的订单添加货物</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- column -->
+    <div class="col-lg-12">
+        <div style="padding: 25px">
+
+        </div>
+        <div style="display: flex;justify-content: flex-start;">
+            <div class="card" style="flex:1;margin-right: 20px;">
+                <div class="card-body">
+                    <h3 class="card-title">货物信息表</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>货物ID</th>
+                                <th>货物名称</th>
+                                <th>计量单位</th>
+                                <th>保质期</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {foreach name='cargo' key='key' item='item'}
+                            <tr>
+                                <td class="cargo_id">{$item['cargo_id']}</td>
+                                <td class="cargo_name">{$item['cargo_name']}</td>
+                                <td>{$item['measure_unit']}</td>
+                                <td>{$item['expiration_date']}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-md add"
+                                            data-index="{$item['cargo_id']}">添加
+                                    </button>
+                                </td>
+                            </tr>
+                            {/foreach}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="card" style="flex:1;">
+                <div style="margin:20px;">
+                    <h2 class="card-title">已选择的货物列表</h2>
+                    <form action="addOrderCargo" method="post">
+                        <input type="hidden" name="order_id" value="{$client['order_id']}">
+                        <input type="hidden" name="cargoArr" value="">
+                        <div style="padding: 10px" id="cargo_result" class="table-responsive">
+
+                            <table class="table" id="cargoTable">
+                                <thead>
+                                <tr>
+                                    <th>货物ID</th>
+                                    <th>货物名称</th>
+                                    <th>货物数量</th>
+                                    <th>是否删除</th>
+                                </tr>
+                                </thead>
+                                <tbody id="cargoTbody">
+                                {foreach name='chooseCargo' key='key' item='item'}
+                                <tr>
+                                    <input type="hidden" class="cargo_id" name="cargo_id" value="{$item['cargo_id']}">
+                                    <td class="cargo_id">{$item['cargo_id']}</td>
+                                    <td class="cargo_name">{$item['cargo_name']}</td>
+                                    <td><input name="cargo_count" type="text" value="{$item['cargo_count']}"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-md delCargo"
+                                                data-index="{$item['cargo_id']}">删除
+                                        </button>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="position: absolute;bottom: 20px;left: 20px;">
+                            <button class="btn btn-primary btn-lg" id="confirm" type="button"
+                                    data-orderId="{$client['order_id']}">选择完毕，确认提交
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script>
+    function addorderCargo(cargo_id) {
+        location.href = "{:url('addorderCargo')}" + '?cargo_id=' + cargo_id;
+    }
+
+    $(function () {
+        let add = $($('.add'));
+        let confirm = $($('.confirm').parent().siblings('div.modal-body').children('input.ipt'));
+        let tbody = $('#cargoTbody');
+        let choose_cargoId = [];
+        add.on('click', function () {
+            let chooseIds = $(this).parent().siblings('td.cargo_id').html();//即将添加的货物id
+            let chooseName = $(this).parent().siblings('td.cargo_name').html();
+            let dataIndex = $(this).attr('data-index');
+            let tr = tbody.children('tr');
+            let trAmount = tbody.children('tr').length;
+            for (let i = 0; i < trAmount; i++) {
+                let nowId = parseInt($(tr[i]).children('input.cargo_id').val());
+                if (chooseIds == nowId) {
+                    alert('您已选择该货物，改变其数量即可！');
+                    return false;
+                }
+            }
+            tbody.append(`<tr id="${chooseIds}"><input type="hidden" class="cargo_id" name="cargo_id" value="${chooseIds}"><td>${chooseIds}</td><td class="cargo_name">${chooseName}</td><td><input type="text" name="cargo_count"></td><td><button class="btn btn-danger btn-md delCargo"  data-id="${chooseIds}">删除</button></td></tr>`);
+        });
+        tbody.on('click', ".delCargo", function () {
+            $(this).parent().parent().remove();
+        });
+        let cargoArr = [];
+        $('#confirm').on('click', function () {
+            let trLength = $(this).parent().prev().find('tbody').children('tr').length;
+            let order_id = $(this).attr('data-orderId');
+            console.log(trLength);
+            for (let i = 0; i < trLength; i++) {
+                let tr = $($(this).parent().prev().find('tbody').children('tr')[i]);
+                if (tr.children("td").children("input[name='cargo_count']").val() != 0) {
+                    //存在数量值
+                    cargoArr.push({
+                        'cargo_id': tr.children("input.cargo_id").val(),
+                        'cargo_name': tr.children("td.cargo_name").html(),
+                        'cargo_count': tr.children("td").children("input[name='cargo_count']").val(),
+                    });
+                } else {
+                    alert('请输入数量！');
+                    return false;
+                }
+
+            }
+            $('#cargoArr').val(JSON.stringify(cargoArr));
+            $.post('/index/order/addOrderCargo', {"order_id": order_id, "cargoArr": cargoArr}, function (data) {
+                console.log(data);
+                if (data.msg === 'ok') {
+                    location.href = "{:url('index')}";
+                } else {
+                    alert('添加失败！');
+                }
+            });
+        })
+    })
+
+</script>
+{/block}

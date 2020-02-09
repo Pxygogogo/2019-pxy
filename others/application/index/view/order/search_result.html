@@ -1,0 +1,79 @@
+{extend name="base"/}
+{block name="order"}
+<li><a class="waves-effect waves-dark active" href="{:url('index/order/index')}" aria-expanded="false"><i
+        class="mdi mdi-book-open-variant"></i><span class="hide-menu">订单信息管理</span></a></li>
+{/block}
+{block name="body"}
+
+<div class="row">
+    <!-- column -->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">货物信息表</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>订单ID</th>
+                            <th>客户名称</th>
+                            <th>下单日期</th>
+                            <th>发货人</th>
+                            <th>发货人电话</th>
+                            <th>收货人</th>
+                            <th>收货人电话</th>
+                            <th>审核状态</th>
+                            <th>审核评语</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach name='order' key='key' item='item'}
+                        <tr>
+                            <td>{$item['order_id']}</td>
+                            <td>{$item['client_name']}</td>
+                            <td>{$item['order_date']}</td>
+                            <td>{$item['consigner_name']}</td>
+                            <td>{$item['consigner_telnumber']}</td>
+                            <td>{$item['consignee_name']}</td>
+                            <td>{$item['consignee_telnumber']}</td>
+                            <td>{$item['status']}</td>
+                            <td>{$item['comment']}</td>
+                            <td>
+                                <button class="btn btn-primary btn-md" onclick="orderCargo({$item['order_id']})">
+                                    添加货物
+                                </button>
+                                <button class="btn btn-danger btn-md" onclick="del({$item['order_id']})">删除</button>
+                                <button class="btn btn-primary btn-md" onclick="detail({$item['order_id']})">详情</button>
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}
+
+{block name="script"}
+<script>
+    function del(order_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?order_id=' + order_id;
+        } else {
+
+        }
+    }
+
+    function detail(order_id) {
+        location.href = "{:url('detail')}" + '?order_id=' + order_id;
+    }
+
+    function orderCargo(order_id) {
+        location.href = "{:url('orderCargo')}" + '?order_id=' + order_id;
+    }
+</script>
+{/block}

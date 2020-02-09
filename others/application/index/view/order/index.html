@@ -1,0 +1,293 @@
+{extend name="base"/}
+{block name="order"}
+<li><a class="waves-effect waves-dark" href="{:url('index/order/index')}" aria-expanded="false"><i
+        class="mdi mdi-book-open-variant"></i><span class="hide-menu">订单信息管理</span></a></li>
+{/block}
+{block name="body"}
+<div class="row">
+    <div class="col-md-12">
+        <div class="collapse show" id="searchForm">
+            <div style="display: flex;justify-content: flex-start;">
+                <div class="card" style="flex: 1">
+                    <form class="form-horizontal" action="searchResult" method="post">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="padding: 20px;padding-left: 40px;">
+                                <h2 class="panel-title">搜索订单</h2>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="row" style="padding-left: 30px;">
+                                        <div class="col-sm-5">
+                                            <input type="text" name="keywords" class="form-control"
+                                                   placeholder="输入以搜索...">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <button class="btn btn-primary btn-md" type="submit">搜索</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card" style="flex: 1">
+                    <div style="padding: 20px">
+                        <h2 class="panel-title">添加订单</h2>
+                    </div>
+                    <div class="row">
+                        <form action="addOrder" method="post">
+                            <div class="col-sm-1">
+                                <button class="btn btn-primary btn-md" type="button" data-toggle="modal"
+                                        data-target="#myModal">添加订单
+                                </button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel">
+                                <div class="modal-dialog modal-lg" role="document" style="width: 1000px;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel">添加订单</h4>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close"><span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group" style="padding-left: 26px">
+                                                <div class="row" style="margin-bottom: 20px;">
+                                                    <div class="col-lg-5">
+                                                        <input type="hidden" id="client_id" name="client_id" value="">
+                                                        <label for="" class="col-sm-5 control-label">客户名称</label>
+                                                        <div class="input-group">
+                                                            <input type="text" id="client_name" name="client_name"
+                                                                   class="form-control"
+                                                                   placeholder="请输入客户名称">
+                                                            <!--                                                            <span class="input-group-btn"><button-->
+                                                            <!--                                                                    class="btn btn-primary"-->
+                                                            <!--                                                                    id="search_client"-->
+                                                            <!--                                                                    type="button">查询</button></span>-->
+                                                        </div><!-- /input-group -->
+                                                    </div><!-- /.col-lg-6 -->
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">发货人</label>
+                                                        <input type="text" name="consigner_name" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" style="margin-bottom: 20px;">
+
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">发货人联系电话</label>
+                                                        <input type="text" name="consigner_telnumber"
+                                                               class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">发货人省市区</label>
+                                                        <input type="text" name="consigner_region" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-bottom: 20px;">
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">发货详细地址</label>
+                                                        <input type="text" name="consigner_address" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">发货人电子邮箱</label>
+                                                        <input type="email" name="consigner_email" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-bottom: 20px;">
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">收货人</label>
+                                                        <input type="text" name="consignee_name" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">收货人联系电话</label>
+                                                        <input type="text" name="consignee_telnumber"
+                                                               class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-bottom: 20px;">
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">收货人省市区</label>
+                                                        <input type="text" name="consignee_region" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">收货人详细地址</label>
+                                                        <input type="text" name="consignee_address" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-bottom: 20px;">
+
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">收货人电子邮箱</label>
+                                                        <input type="email" name="consignee_email" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <label for="" class="col-sm-5 control-label">下单日期</label>
+                                                        <input type="text" name="order_date" class="form-control"
+                                                               placeholder="">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">
+                                                确认添加
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- column -->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">货物信息表</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>订单ID</th>
+                            <th>客户名称</th>
+                            <th>下单日期</th>
+                            <th>发货人</th>
+                            <th>发货人电话</th>
+                            <th>收货人</th>
+                            <th>收货人电话</th>
+                            <th>审核状态</th>
+                            <th>审核评语</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {foreach name='order' key='key' item='item'}
+                        <tr>
+                            <td>{$item['order_id']}</td>
+                            <td>{$item['client_name']}</td>
+                            <td>{$item['order_date']}</td>
+                            <td>{$item['consigner_name']}</td>
+                            <td>{$item['consigner_telnumber']}</td>
+                            <td>{$item['consignee_name']}</td>
+                            <td>{$item['consignee_telnumber']}</td>
+                            <td>{$item['status']}</td>
+                            <td>{$item['comment']}</td>
+                            <td>
+                                <button class="btn btn-primary " onclick="orderCargo({$item['order_id']})">
+                                    货物
+                                </button>
+                                <button class="btn btn-danger " onclick="del({$item['order_id']})">删除</button>
+                                <button class="btn btn-primary " onclick="detail({$item['order_id']})">详情</button>
+                                <button class="btn btn-success commit ">提交</button>
+                                <button class="btn btn-info" data-toggle="modal"
+                                        data-orderId="{$item['order_id']}"
+                                        data-target="#auditModal">审核
+                            </td>
+                        </tr>
+                        {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="auditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     style="width: 800px;margin: 0 auto;">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">订单审核</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            </div>
+                            <form action="audit" method="post">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <label for="" class="col-sm-5 control-label">是否通过</label>
+                                            <select class="js-example-basic-single form-control" name="isCheck">
+                                                <option value="pass">审核通过</option>
+                                                <option value="reject">驳回审核</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12" style="padding: 10px;">
+                                            <label for="" class="col-sm-12 control-label">审核意见（不超过10字）</label>
+                                            <input type="text" name="check_result" class="form-control"
+                                                   placeholder="请输入审核意见...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="submit" class="btn btn-primary" id="audit">提交</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}
+
+{block name="script"}
+<script>
+    function del(order_id) {
+        if (confirm('确定要删除吗？')) {
+            location.href = "{:url('del')}" + '?order_id=' + order_id;
+        } else {
+
+        }
+    }
+
+    function detail(order_id) {
+        location.href = "{:url('detail')}" + '?order_id=' + order_id;
+    }
+
+    function orderCargo(order_id) {
+        location.href = "{:url('orderCargo')}" + '?order_id=' + order_id;
+    }
+
+    $(function () {
+        //提交
+        $('.commit').on('click', function (data, status) {
+            let btn = this;
+            let order_id = $(this).parent().siblings(0).html();
+            if (confirm('确定要提交吗？')) {
+                $(($(this).parent().siblings())[7]).html('审核中');
+                $.get(`commit?order_id=${order_id}`, function (data) {
+                    alert(data['msg']);
+                })
+            }
+        });
+        $('#auditModal').on('show.bs.modal', function (e) {
+            $('.modal-body').append(`<input type="hidden" name="order_id" value="${$(e.relatedTarget).data('orderid')}">`);
+            // console.log($(e.relatedTarget).data('orderid'));
+        });
+    })
+</script>
+{/block}
